@@ -4,15 +4,13 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/core_yourhome
+      uri: mongodb://localhost:27017/core_yourhome
 
   rabbitmq:
-    host: rabbitmq
+    host: localhost
     port: 5672
     username: guest
     password: guest
-  config:
-    activate:
-      on-profile: "prod"
+
 server:
   port: 8081
