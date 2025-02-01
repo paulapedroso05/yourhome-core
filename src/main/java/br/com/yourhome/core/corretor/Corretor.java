@@ -1,13 +1,15 @@
 package br.com.yourhome.core.corretor;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
-@Entity
 @Getter
+@Document
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor(staticName = "of")
@@ -15,7 +17,10 @@ import java.io.Serializable;
 public class Corretor implements Serializable {
 
     @Id
-    private String documento;
+    @JsonIgnore
+    private String id;
+
+    private String creci;
 
     private String nome;
 
@@ -23,8 +28,14 @@ public class Corretor implements Serializable {
 
     private String telefone;
 
-    private String creci;
-
     private String bio;
+
+    private List<String> tiposImoveis;
+
+    private List<String> construtoras;
+
+    private List<String> cidades;
+
+    private List<String> bairros;
 
 }

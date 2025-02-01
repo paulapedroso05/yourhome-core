@@ -3,8 +3,6 @@ package br.com.yourhome.core.configuracao.exception.handler;
 import br.com.yourhome.core.configuracao.exception.*;
 import br.com.yourhome.core.configuracao.exception.model.Message;
 import br.com.yourhome.core.configuracao.exception.model.MessageType;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.core.Ordered;
@@ -25,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Set;
 

@@ -1,7 +1,9 @@
 package br.com.yourhome.core.corretor;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import br.com.monkey.ecx.repository.ResourceRepository;
 
-interface CorretorRepository extends JpaRepository<Corretor, String>, JpaSpecificationExecutor<Corretor> {
+interface CorretorRepository extends ResourceRepository<Corretor, String> {
+
+    Corretor findCorretorByCreci(String creci);
+
 }

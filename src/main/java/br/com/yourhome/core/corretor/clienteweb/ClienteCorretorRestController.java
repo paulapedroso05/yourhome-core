@@ -7,14 +7,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -25,8 +22,8 @@ public class ClienteCorretorRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    Page<Corretor> listar(@SearchParameter Specification<Corretor> search,
-            @PageableDefault @SortDefault.SortDefaults({
+    Page<Corretor> listar(@PathVariable Integer idUsuario, @SearchParameter Query search,
+                          @PageableDefault @SortDefault.SortDefaults({
                     @SortDefault(sort = "nome", direction = Sort.Direction.ASC) }) Pageable pageable) {
         return corretorQuery.listar(search, pageable);
     }

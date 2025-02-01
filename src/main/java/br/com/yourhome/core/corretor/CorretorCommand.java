@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static java.util.Optional.ofNullable;
+
 @Service
 @AllArgsConstructor
 @Transactional(rollbackFor = Exception.class)
@@ -17,8 +19,8 @@ public class CorretorCommand {
     private final MessageSourceHelper messageSourceHelper;
 
     public Corretor handle(CorretorCadastradoMessage message) {
-        corretorRepository.findById(message.getDocumento()).ifPresent(existente -> {
-            throw new ConflictException(messageSourceHelper.getMessage("corretor.conflito", message.getDocumento()));
+        ofNullable(corretorRepository.findCorretorByCreci(message.getCreci())).ifPresent(existente -> {
+            throw new ConflictException(messageSourceHelper.getMessage("corretor.conflito", message.getCreci()));
         });
         return corretorRepository.save(message.to());
     }
